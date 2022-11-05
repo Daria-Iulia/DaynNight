@@ -1,0 +1,184 @@
+@import url("https://fonts.googleapis.com/css2?family=Heebo&display=swap");
+:root {
+  --color-light: white;
+  --bgimg-light: var(--limg);
+  --color-dark: #333844;
+  --bgimg-dark: var(--dimg);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --fg: var(--color-dark);
+    --bg: var(--color-light);
+    --bgimg: var(--bgimg-light);
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fg: var(--color-light);
+    --bgimg: var(--bgimg-dark);
+  }
+}
+[data-light],
+[data-dark] {
+  opacity: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-dark] {
+    opacity: 1;
+  }
+
+  #color-scheme:checked + #app {
+    --fg: var(--color-dark);
+    --bg: var(--color-light);
+    --bgimg: var(--bgimg-light);
+  }
+  #color-scheme:checked + #app [data-light] {
+    opacity: 1;
+  }
+  #color-scheme:checked + #app [data-dark] {
+    opacity: 0;
+  }
+}
+@media (prefers-color-scheme: light) {
+  [data-light] {
+    opacity: 1;
+  }
+
+  #color-scheme:checked + #app {
+    --fg: var(--color-light);
+    --bg: var(--color-dark);
+    --bgimg: var(--bgimg-dark);
+  }
+  #color-scheme:checked + #app [data-light] {
+    opacity: 0;
+  }
+  #color-scheme:checked + #app [data-dark] {
+    opacity: 1;
+  }
+}
+#active {
+  font-size: 50px;
+  margin-top: 22rem;
+  margin-bottom: 10px;
+  border: 5px solid transparent;
+  margin-left: auto;
+  margin-right: auto;
+  width: 13%;
+  padding: 50px;
+  font-family: "Heebo", sans-serif;
+  z-index: 2;
+  position: relative;
+}
+
+#active span {
+  position: absolute;
+  transition: all 0.5s ease;
+}
+
+.bg {
+  opacity: 0.7;
+  background-image: var(--bgimg);
+}
+
+body * {
+  padding: 0;
+  margin: 0;
+}
+
+main {
+  color: var(--fg);
+  background: var(--bg);
+  transition: all 0.5s ease;
+}
+
+* {
+  box-sizing: border-box;
+}
+*:before,
+*:after {
+  content: "";
+  position: absolute;
+}
+
+.bg {
+  background-image: var(--bgimg);
+  background-position: center;
+}
+
+*:before,
+*:after {
+  content: "";
+  position: absolute;
+}
+
+.bg {
+  position: absolute;
+  inset: 0;
+}
+
+.toggle-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 99;
+}
+
+.toggle {
+  position: relative;
+  display: block;
+}
+
+.toggle > span {
+  position: relative;
+}
+
+label.toggle-item {
+  width: 4em;
+  height: 2em;
+  display: inline-block;
+  border-radius: 50px;
+  margin: 40px;
+  position: relative;
+  transition: all 0.3s ease;
+
+  cursor: pointer;
+}
+label.toggle-item:before {
+  display: block;
+  border-radius: 2em;
+  transition: 0.3s ease;
+}
+
+.transparent label {
+  background: transparent;
+  border: 3px solid var(--fg);
+  height: 2.35em;
+}
+.transparent label:before {
+  border: 3px solid var(--fg);
+  width: 1em;
+  height: 1em;
+  top: 0.3em;
+  left: 0.3em;
+  background: var(--fg);
+}
+
+#color-scheme {
+  width: 0;
+  height: 0;
+  visibility: hidden;
+  position: absolute;
+}
+
+#color-scheme:checked + #app .toggle label:before {
+  transform: translateX(120%);
+}
+
+:root {
+  --limg: url(day.jpeg);
+  --dimg: url(night.jpeg);
+}
